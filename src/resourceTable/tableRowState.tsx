@@ -2,7 +2,7 @@ import { useTextField } from 'common';
 import { randomSuccessOrFailure } from 'common/mockApiCalls';
 import react, { useCallback, useMemo, useState } from 'react';
 
-interface ResourceDetails {
+export interface ResourceDetails {
   name: string;
   id: string;
   createdOn: Date;
@@ -14,14 +14,14 @@ export const useResourceTableRow = (initialState?: ResourceDetails) => {
   const [createdOn, setCreatedOn] = useState<Date | undefined>()
 
   const [errorMessage, setErrorMessage] = useState<string | undefined>()
-  const isCreated = useMemo(() => !!id, [id])
+  const isNew = useMemo(() => !!id, [id])
   const hasError = useMemo(() => !!errorMessage, [errorMessage])
 
   const handleSave = useCallback(() => {
     randomSuccessOrFailure({ id, name: nameField.value })
       .catch(() => setErrorMessage('Could not create for reasons'))
       .then(() => {
-        if (isCreated)
+        if (isNew)
           setCreatedOn(new Date())
         setId(Math.floor(Math.random() * 100000).toString())
       })
@@ -38,7 +38,7 @@ export const useResourceTableRow = (initialState?: ResourceDetails) => {
     nameField,
     createdOn,
     errorMessage,
-    isCreated,
+    isNew,
     hasError,
     handleSave,
     handleDelete
