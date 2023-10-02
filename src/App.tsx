@@ -1,4 +1,3 @@
-import React from 'react';
 import { ResourceTable } from 'resourceTable/table'
 import { Page } from 'layout/page'
 import 'App.css';

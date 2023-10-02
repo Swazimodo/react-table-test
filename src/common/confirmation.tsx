@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 interface MessageProps {
   title?: string;
@@ -9,7 +9,7 @@ interface MessageProps {
 
 export const ConfirmationModal: FC<MessageProps> = (props) => {
   return <div>
-    {props.title ?? <div>{props.title}</div>}
+    {props.title && <div>{props.title}</div>}
     <div>{props.message}</div>
     <button onClick={props.onConfirm}>Yes</button>
     <button onClick={props.onCancel}>Cancel</button>

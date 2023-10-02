@@ -1,10 +1,12 @@
 export const randomSuccessOrFailure = (value?: any) => {
   console.log(`mock api call with: ${value}`)
   return new Promise((resolve, reject) => {
-    if (Math.random() >= .5)
+    if (Math.random() >= .5) {
       resolve({ responseCode: 200, message: "success" })
-    else
+    }
+    else {
       reject({ responseCode: 404, message: "not found" })
+    }
   })
 }
 
