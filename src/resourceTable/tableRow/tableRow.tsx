@@ -1,8 +1,9 @@
-import react, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import styled from 'styled-components'
 
 import { ConfirmationModal } from 'common/confirmation'
 import { useResourceTableRow, ResourceDetails } from 'resourceTable/tableRow/tableRowState'
+import { deviceSizes } from 'styles/global'
 
 interface ResourceTableRowProps {
   details?: ResourceDetails
@@ -36,30 +37,30 @@ export const ResourceTableRow: FC<ResourceTableRowProps> = (props) => {
 
   const editRowView = () => {
     return [
-      <TableCell key={1}>{row?.id}</TableCell>,
-      <TableCell key={2}>
+      <TableCellDiv key={1}>{row?.id}</TableCellDiv>,
+      <TableCellDiv key={2}>
         <input value={row?.nameField.value ?? ''} onChange={row?.nameField.handleChange} />
-      </TableCell>,
-      <TableCell key={3}>{row.createdOn?.toDateString()}</TableCell>,
-      <TableCell key={4}>
+      </TableCellDiv>,
+      <TableCellDiv key={3}>{row.createdOn?.toDateString()}</TableCellDiv>,
+      <TableCellDiv key={4}>
         <button onClick={handleSave}>Save</button>
-      </TableCell>
+      </TableCellDiv>
     ]
   }
 
   const viewRow = () => {
     return [
-      <TableCell key={1}>{row?.id}</TableCell>,
-      <TableCell key={2}>{row?.nameField.value}</TableCell>,
-      <TableCell key={3}>{row.createdOn?.toDateString()}</TableCell>,
-      <TableCell key={4}>
+      <TableCellDiv key={1}>{row?.id}</TableCellDiv>,
+      <TableCellDiv key={2}>{row?.nameField.value}</TableCellDiv>,
+      <TableCellDiv key={3}>{row.createdOn?.toDateString()}</TableCellDiv>,
+      <TableCellDiv key={4}>
         {row.id && <button onClick={handleShowDeleteConfirmation}>Delete</button>}
         {showDelConfirmation && <ConfirmationModal
           onCancel={handleCancelDeleteConfirmation}
           onConfirm={handleDelete}
           message='Do you want to delete?'
         />}
-      </TableCell>
+      </TableCellDiv>
     ]
   }
 
@@ -78,27 +79,35 @@ interface RowWrapperProps {
 }
 
 const RowWrapper: FC<RowWrapperProps> = (props) => {
-  let Wrapper = Row;
+  let Wrapper = RowDiv;
   if (props.hasError) {
-    Wrapper = ErrorRow;
+    Wrapper = ErrorRowDiv;
   } else if (props.isNew) {
-    Wrapper = NewRow;
+    Wrapper = NewRowDiv;
   }
   return <Wrapper>{props.children}</Wrapper>;
 }
 
-const Row = styled.div`
+const RowDiv = styled.div`
   background-color: transparent;
+
+  @media ${deviceSizes.mobileL} {
+    display: table-row;
+  }
 `
 
-const ErrorRow = styled(Row)`
+const ErrorRowDiv = styled(RowDiv)`
   background-color: #dd0f0f;
 `
 
-const NewRow = styled(Row)`
+const NewRowDiv = styled(RowDiv)`
   background-color: #a4b69f;
 `
 
-const TableCell = styled.div`
+const TableCellDiv = styled.div`
   border: 1px solid #494949;
+
+  @media ${deviceSizes.mobileL} {
+    display: table-cell;
+  }
 `
