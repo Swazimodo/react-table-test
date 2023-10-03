@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { ResourceTableRow, ResourceDetails } from 'resourceTable/tableRow'
 import { useResourceTableData } from './tableState';
 import { deviceSizes } from 'styles/global'
+import { TableHeader } from './tableHeader';
 
 export const ResourceTable: FC = () => {
   const { resources, handleAddRow, handleDeleteRow, setSortOrder } = useResourceTableData()
@@ -20,6 +21,11 @@ export const ResourceTable: FC = () => {
     <button onClick={handleShowNewRow}>Add new resource</button>
     <button onClick={handleSortByTitle}>Sort by Title</button>
     <TableDiv>
+      <TableHeader
+        sortColumn='id'
+        sortDirection='asc'
+        onSortChange={() => { }}
+      />
       {resources.map((r, i) => <ResourceTableRow
         details={r}
         onSaveRow={handleSaveNewRow}
