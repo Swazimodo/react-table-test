@@ -39,7 +39,7 @@ export const ResourceTableRow: FC<ResourceTableRowProps> = (props) => {
     return [
       <TableCellDiv key={1}>{row?.id}</TableCellDiv>,
       <TableCellDiv key={2}>
-        <input value={row?.nameField.value ?? ''} onChange={row?.nameField.handleChange} />
+        <input autoFocus value={row?.nameField.value ?? ''} onChange={row?.nameField.handleChange} />
       </TableCellDiv>,
       <TableCellDiv key={3}>{row.createdOn?.toDateString()}</TableCellDiv>,
       <TableCellDiv key={4}>
@@ -104,6 +104,7 @@ const NewRowDiv = styled(RowDiv)`
 
 export const TableCellDiv = styled.div`
   border: 1px solid #494949;
+  padding: 4px;
 
   @media ${deviceSizes.mobileL} {
     display: table-cell;

@@ -29,7 +29,7 @@ export const useResourceTableRow = (initialState?: ResourceDetails) => {
         }
 
         const savedResourceDetails: ResourceDetails = {
-          id: id ?? Math.floor(Math.random() * 100000).toString(),
+          id: id ?? `r${Math.floor(Math.random() * 100000)}`,
           name: nameField.value,
           createdOn: createdOn ?? new Date()
         }

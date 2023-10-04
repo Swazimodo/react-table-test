@@ -5,13 +5,12 @@ import { ResourceTableRow } from 'resourceTable/tableRow'
 import { ResourceDetails } from 'resourceTable/tableRowState'
 import { useResourceTableData } from './tableState';
 import { deviceSizes } from 'styles/global'
-import { TableHeader } from './tableHeader';
+import { TableHeaderRow } from './tableHeader';
 
 export const ResourceTable: FC = () => {
-  const { resources, handleAddRow, handleDeleteRow, setSortOrder } = useResourceTableData()
+  const { resources, sortColumn, sortDirection, isLoading, handleAddRow, handleDeleteRow, handleSortChange } = useResourceTableData()
   const [isAddingRow, setIsAddingRow] = useState(false)
 
-  const handleSortByTitle = useCallback(() => setSortOrder('title'), [setSortOrder])
   const handleShowNewRow = useCallback(() => setIsAddingRow(true), [])
   const handleSaveNewRow = useCallback((resource: ResourceDetails) => {
     setIsAddingRow(false)
@@ -19,22 +18,24 @@ export const ResourceTable: FC = () => {
   }, [handleAddRow])
 
   return <section>
-    <button onClick={handleShowNewRow}>Add new resource</button>
-    <button onClick={handleSortByTitle}>Sort by Title</button>
-    <TableDiv>
-      <TableHeader
-        sortColumn='id'
-        sortDirection='asc'
-        onSortChange={() => { }}
-      />
-      {resources.map((r, i) => <ResourceTableRow
-        details={r}
-        onSaveRow={handleSaveNewRow}
-        onDeleteRow={handleDeleteRow}
-        key={r.id}
-      />)}
-      {isAddingRow && <ResourceTableRow onSaveRow={handleSaveNewRow} onDeleteRow={handleDeleteRow} />}
-    </TableDiv>
+    {isLoading && <>loading gif!!</>}
+    {!isLoading && <div>
+      <button onClick={handleShowNewRow}>Add new resource</button>
+      <TableDiv>
+        <TableHeaderRow
+          sortColumn={sortColumn}
+          sortDirection={sortDirection}
+          onSortChange={handleSortChange}
+        />
+        {resources.map((r, i) => <ResourceTableRow
+          details={r}
+          onSaveRow={handleSaveNewRow}
+          onDeleteRow={handleDeleteRow}
+          key={r.id}
+        />)}
+        {isAddingRow && <ResourceTableRow onSaveRow={handleSaveNewRow} onDeleteRow={handleDeleteRow} />}
+      </TableDiv>
+    </div>}
   </section>
 }
 
