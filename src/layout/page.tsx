@@ -36,5 +36,5 @@ const PageDiv = styled.div`
 const ContentMain = styled.main`
   flex-grow: 1;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 16px auto;
 `

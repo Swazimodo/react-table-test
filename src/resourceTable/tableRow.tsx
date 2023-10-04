@@ -1,9 +1,9 @@
 import { FC, useState } from 'react';
 import styled from 'styled-components'
 
-import { ConfirmationModal } from 'common/confirmation'
-import { useResourceTableRow, ResourceDetails } from 'resourceTable/tableRow/tableRowState'
 import { deviceSizes } from 'styles/global'
+import { ConfirmationModal } from 'common/confirmation'
+import { useResourceTableRow, ResourceDetails } from 'resourceTable/tableRowState'
 
 interface ResourceTableRowProps {
   details?: ResourceDetails
@@ -39,7 +39,7 @@ export const ResourceTableRow: FC<ResourceTableRowProps> = (props) => {
     return [
       <TableCellDiv key={1}>{row?.id}</TableCellDiv>,
       <TableCellDiv key={2}>
-        <input value={row?.nameField.value ?? ''} onChange={row?.nameField.handleChange} />
+        <input autoFocus value={row?.nameField.value ?? ''} onChange={row?.nameField.handleChange} />
       </TableCellDiv>,
       <TableCellDiv key={3}>{row.createdOn?.toDateString()}</TableCellDiv>,
       <TableCellDiv key={4}>
@@ -88,9 +88,7 @@ const RowWrapper: FC<RowWrapperProps> = (props) => {
   return <Wrapper>{props.children}</Wrapper>;
 }
 
-const RowDiv = styled.div`
-  background-color: transparent;
-
+export const RowDiv = styled.div`
   @media ${deviceSizes.mobileL} {
     display: table-row;
   }
@@ -104,8 +102,9 @@ const NewRowDiv = styled(RowDiv)`
   background-color: #a4b69f;
 `
 
-const TableCellDiv = styled.div`
+export const TableCellDiv = styled.div`
   border: 1px solid #494949;
+  padding: 4px;
 
   @media ${deviceSizes.mobileL} {
     display: table-cell;
