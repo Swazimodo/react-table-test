@@ -1,7 +1,8 @@
 import { FC, useCallback, useState } from 'react';
 import styled from 'styled-components'
 
-import { ResourceTableRow, ResourceDetails } from 'resourceTable/tableRow'
+import { ResourceTableRow } from 'resourceTable/tableRow'
+import { ResourceDetails } from 'resourceTable/tableRowState'
 import { useResourceTableData } from './tableState';
 import { deviceSizes } from 'styles/global'
 import { TableHeader } from './tableHeader';

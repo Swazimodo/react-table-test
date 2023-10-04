@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
 
 import { willSucceed } from 'common/mockApiCalls'
-import { ResourceDetails } from 'resourceTable/tableRow'
+import { ResourceDetails } from 'resourceTable/tableRowState'
 import { sortByText, sortByValue } from 'common/sort';
 
 export const useResourceTableData = () => {

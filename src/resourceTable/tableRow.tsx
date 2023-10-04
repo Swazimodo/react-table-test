@@ -1,9 +1,9 @@
 import { FC, useState } from 'react';
 import styled from 'styled-components'
 
-import { ConfirmationModal } from 'common/confirmation'
-import { useResourceTableRow, ResourceDetails } from 'resourceTable/tableRow/tableRowState'
 import { deviceSizes } from 'styles/global'
+import { ConfirmationModal } from 'common/confirmation'
+import { useResourceTableRow, ResourceDetails } from 'resourceTable/tableRowState'
 
 interface ResourceTableRowProps {
   details?: ResourceDetails
@@ -88,9 +88,7 @@ const RowWrapper: FC<RowWrapperProps> = (props) => {
   return <Wrapper>{props.children}</Wrapper>;
 }
 
-const RowDiv = styled.div`
-  background-color: transparent;
-
+export const RowDiv = styled.div`
   @media ${deviceSizes.mobileL} {
     display: table-row;
   }
@@ -104,7 +102,7 @@ const NewRowDiv = styled(RowDiv)`
   background-color: #a4b69f;
 `
 
-const TableCellDiv = styled.div`
+export const TableCellDiv = styled.div`
   border: 1px solid #494949;
 
   @media ${deviceSizes.mobileL} {
