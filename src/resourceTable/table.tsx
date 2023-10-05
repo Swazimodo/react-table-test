@@ -3,9 +3,9 @@ import styled from 'styled-components'
 
 import { ResourceTableRow } from 'resourceTable/tableRow'
 import { ResourceDetails } from 'resourceTable/tableRowState'
-import { useResourceTableData } from './tableState';
-import { deviceSizes } from 'styles/global'
-import { TableHeaderRow } from './tableHeader';
+import { useResourceTableData } from 'resourceTable/tableState';
+import { TableHeaderRow } from 'resourceTable/tableHeader';
+import { MediaSizes, getMinWidthQuery } from 'common/mediaQueries';
 
 export const ResourceTable: FC = () => {
   const { resources, sortColumn, sortDirection, isLoading, handleAddRow, handleDeleteRow, handleSortChange } = useResourceTableData()
@@ -19,7 +19,7 @@ export const ResourceTable: FC = () => {
 
   return <section>
     {isLoading && <>loading gif!!</>}
-    {!isLoading && <div>
+    {!isLoading && <TableWrapperDiv>
       <button onClick={handleShowNewRow}>Add new resource</button>
       <TableDiv>
         <TableHeaderRow
@@ -35,17 +35,19 @@ export const ResourceTable: FC = () => {
         />)}
         {isAddingRow && <ResourceTableRow onSaveRow={handleSaveNewRow} onDeleteRow={handleDeleteRow} />}
       </TableDiv>
-    </div>}
+    </TableWrapperDiv>}
   </section>
 }
 
+const TableWrapperDiv = styled.div`
+  margin: 24px;
+`
+
 const TableDiv = styled.div`
-  background-color: #fbffd8;
   display: flex;
   flex-direction: column;
-  margin: 24px;
 
-  @media ${deviceSizes.mobileL} {
+  @media ${getMinWidthQuery(MediaSizes.sm)} {
     display: table;
     margin: 0 auto;
   }
