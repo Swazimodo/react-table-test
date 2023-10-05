@@ -1,8 +1,9 @@
 import { FC, useCallback } from "react"
 import styled from 'styled-components'
 
-import { useMediaQuery, MediaSizes } from "common/mediaHooks"
-import { RowDiv, TableCellDiv } from 'resourceTable/tableRow'
+import { useMediaQuery, MediaSizes } from "common/mediaQueries"
+import { RowDiv } from 'resourceTable/tableRow'
+import { TableCellDiv } from 'resourceTable/tableCell'
 import { SortColumn, SortDirection } from 'resourceTable/tableState'
 
 interface TableHeaderProps {
@@ -12,10 +13,10 @@ interface TableHeaderProps {
 }
 
 export const TableHeaderRow: FC<TableHeaderProps> = (props) => {
-  const query = useMediaQuery(MediaSizes.sm);
+  const { matchesUp } = useMediaQuery(MediaSizes.sm);
 
   // hide the header on mobile
-  if (!query) {
+  if (!matchesUp) {
     return null;
   }
 

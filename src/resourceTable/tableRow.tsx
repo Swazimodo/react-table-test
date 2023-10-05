@@ -1,9 +1,10 @@
 import { FC, useState } from 'react';
 import styled from 'styled-components'
 
-import { deviceSizes } from 'styles/global'
 import { ConfirmationModal } from 'common/confirmation'
 import { useResourceTableRow, ResourceDetails } from 'resourceTable/tableRowState'
+import { MediaSizes, getMaxWidthQuery, getMinWidthQuery } from 'common/mediaQueries';
+import { TableCell } from './tableCell';
 
 interface ResourceTableRowProps {
   details?: ResourceDetails
@@ -37,30 +38,30 @@ export const ResourceTableRow: FC<ResourceTableRowProps> = (props) => {
 
   const editRowView = () => {
     return [
-      <TableCellDiv key={1}>{row?.id}</TableCellDiv>,
-      <TableCellDiv key={2}>
+      <TableCell key={1} columnHeaderName='Id'>{row?.id}</TableCell>,
+      <TableCell key={2} columnHeaderName='Name'>
         <input autoFocus value={row?.nameField.value ?? ''} onChange={row?.nameField.handleChange} />
-      </TableCellDiv>,
-      <TableCellDiv key={3}>{row.createdOn?.toDateString()}</TableCellDiv>,
-      <TableCellDiv key={4}>
+      </TableCell>,
+      <TableCell key={3} columnHeaderName='Created On'>{row.createdOn?.toDateString()}</TableCell>,
+      <TableCell key={4}>
         <button onClick={handleSave}>Save</button>
-      </TableCellDiv>
+      </TableCell>
     ]
   }
 
   const viewRow = () => {
     return [
-      <TableCellDiv key={1}>{row?.id}</TableCellDiv>,
-      <TableCellDiv key={2}>{row?.nameField.value}</TableCellDiv>,
-      <TableCellDiv key={3}>{row.createdOn?.toDateString()}</TableCellDiv>,
-      <TableCellDiv key={4}>
+      <TableCell key={1} columnHeaderName='Id'>{row?.id}</TableCell>,
+      <TableCell key={2} columnHeaderName='Name'>{row?.nameField.value}</TableCell>,
+      <TableCell key={3} columnHeaderName='Created On'>{row.createdOn?.toDateString()}</TableCell>,
+      <TableCell key={4}>
         {row.id && <button onClick={handleShowDeleteConfirmation}>Delete</button>}
         {showDelConfirmation && <ConfirmationModal
           onCancel={handleCancelDeleteConfirmation}
           onConfirm={handleDelete}
           message='Do you want to delete?'
         />}
-      </TableCellDiv>
+      </TableCell>
     ]
   }
 
@@ -89,8 +90,12 @@ const RowWrapper: FC<RowWrapperProps> = (props) => {
 }
 
 export const RowDiv = styled.div`
-  @media ${deviceSizes.mobileL} {
+  background-color: #fbffd8;
+  @media ${getMinWidthQuery(MediaSizes.sm)} {
     display: table-row;
+  }
+  @media ${getMaxWidthQuery(MediaSizes.sm)} {
+    margin-bottom:8px;
   }
 `
 
@@ -100,13 +105,4 @@ const ErrorRowDiv = styled(RowDiv)`
 
 const NewRowDiv = styled(RowDiv)`
   background-color: #a4b69f;
-`
-
-export const TableCellDiv = styled.div`
-  border: 1px solid #494949;
-  padding: 4px;
-
-  @media ${deviceSizes.mobileL} {
-    display: table-cell;
-  }
 `
