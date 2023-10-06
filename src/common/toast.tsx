@@ -1,8 +1,9 @@
 import { FC, createContext, useCallback, useContext, useRef, useState } from "react";
+import styled from 'styled-components'
 
 export interface ToastMessage {
-  Title: string
   message: string
+  details?: string
   level: 'info' | 'warning' | 'error'
 }
 
@@ -57,12 +58,41 @@ const useToasts = () => {
 
 export const ToastMessageEmitter: FC = () => {
   const { messages } = useContext(toastContext)
-  return <div>
-    <div>
-      {messages.reverse().map((m, i) => <div className={m.level} key={m.shown.getTime()}>
-        <div>{m.Title}</div>
-        <div>{m.message}</div>
-      </div>)}
-    </div>
-  </div>
+  return <CenterPointDiv>
+    {messages.reverse().map((m, i) => <ToastDiv className={m.level} key={m.shown.getTime()}>
+      <div>{m.message}</div>
+      {m.details && <div>{m.details}</div>}
+    </ToastDiv>)}
+  </CenterPointDiv>
 }
+
+const CenterPointDiv = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`
+const ToastDiv = styled.div`
+  width: 200px;
+  border: 2px solid;
+
+  margin: 4px 4px 0 0;
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+
+  &.info {
+    background-color: #b8b8f5;
+    border-color: #2323ac;
+  }
+  &.warning {
+    background-color: #ffd382;
+    border-color: #ffa500;
+  }
+  &.error {
+    background-color: #f58383;
+    border-color: #9c0505;
+  }
+`

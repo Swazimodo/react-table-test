@@ -15,29 +15,28 @@ export const useResourceTableRow = (initialState?: ResourceDetails) => {
   const nameField = useTextField(initialState?.name)
   const [createdOn, setCreatedOn] = useState<Date | undefined>(initialState?.createdOn)
 
-  const [errorMessage, setErrorMessage] = useState<string | undefined>()
+  const [hasError, setHasError] = useState(false)
   const isNew = useMemo(() => !id, [id])
-  const hasError = useMemo(() => !!errorMessage, [errorMessage])
 
-  const handleSetErrorMessage = useCallback((message?: string) => {
-    setErrorMessage(message)
-    if (message)
+  const handleSetErrorMessage = useCallback((error?: Error) => {
+    setHasError(!!error)
+    if (error)
       addMessage({
         level: 'error',
-        Title: 'Error',
-        message: message
+        message: error.message,
+        details: error?.cause as string | undefined
       })
-  }, [setErrorMessage, addMessage])
+  }, [setHasError, addMessage])
 
   const handleSave = useCallback(() => {
     if (!nameField.value) {
-      const msg = "name field was not set"
-      handleSetErrorMessage(msg)
-      return Promise.reject(Error(msg))
+      const error = Error("Validation error", { cause: "name field was not set" })
+      handleSetErrorMessage(error)
+      return Promise.reject(error)
     }
 
     return randomSuccessOrFailure({ id, name: nameField.value })
-      .catch(() => { throw Error("api save failed for reasons") })
+      .catch(() => { throw Error("Save failed", { cause: "api failed for reasons" }) })
       .then((): ResourceDetails => {
         // simulating result from an api call
         const savedResourceDetails: ResourceDetails = {
@@ -47,26 +46,28 @@ export const useResourceTableRow = (initialState?: ResourceDetails) => {
         }
         setCreatedOn(savedResourceDetails.createdOn)
         setId(savedResourceDetails.id)
-        setErrorMessage(undefined)
+        setHasError(false)
         return savedResourceDetails
       })
       .catch((msg: Error) => {
-        handleSetErrorMessage(msg.message)
+        handleSetErrorMessage(msg)
         throw msg
       })
   }, [id, nameField, createdOn, handleSetErrorMessage])
 
   const handleDelete = useCallback(() => {
-    randomSuccessOrFailure(id)
-      .catch(() => setErrorMessage('Could not delete for reasons'))
-      .then()
-  }, [id])
+    return randomSuccessOrFailure(id)
+      .catch(() => {
+        const error = Error("Delete failed", { cause: "Could not delete for reasons" })
+        handleSetErrorMessage(error)
+        throw error
+      })
+  }, [id, handleSetErrorMessage])
 
   return {
     id,
     nameField,
     createdOn,
-    errorMessage,
     isNew,
     hasError,
     handleSave,
