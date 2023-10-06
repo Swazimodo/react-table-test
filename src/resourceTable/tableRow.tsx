@@ -33,7 +33,8 @@ export const ResourceTableRow: FC<ResourceTableRowProps> = (props) => {
   const handleDelete = () => {
     setShowDelConfirmation(false)
     row.handleDelete()
-    props.onDeleteRow(row.id ?? '')
+      .then(() => props.onDeleteRow(row.id ?? ''))
+      .catch(() => { })
   }
 
   const editRowView = () => {

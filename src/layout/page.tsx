@@ -6,6 +6,7 @@ import { Header } from 'layout/header'
 import { Nav } from 'layout/nav'
 import { Footer } from 'layout/footer'
 import { MediaSizes, getMaxWidthQuery } from 'common/mediaQueries';
+import { ToastMessageEmitter } from 'common/toast';
 
 
 interface PageProps {
@@ -13,16 +14,17 @@ interface PageProps {
 }
 
 export const Page: FC<PageProps> = (props) => {
-  return <PageDiv className='App'>
-    <ErrorBoundary>
+  return <ErrorBoundary>
+    <ToastMessageEmitter />
+    <PageDiv className='App'>
       <Header />
       <Nav />
       <ContentMain>
         {props.children}
       </ContentMain>
       <Footer />
-    </ErrorBoundary>
-  </PageDiv>
+    </PageDiv>
+  </ErrorBoundary>
 }
 
 const PageDiv = styled.div`
