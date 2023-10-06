@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styled from 'styled-components'
 
-import { MediaSizes, getMaxWidthQuery } from 'common/mediaQueries';
+import { MediaSizes, getMaxWidthQuery } from 'common';
 
 interface TableCellProps {
   columnHeaderName?: string

@@ -2,9 +2,9 @@ import { FC } from 'react';
 import styled from 'styled-components'
 
 export const Footer: FC = () => {
-  return <FooterDiv>footer</FooterDiv>
+  return <SiteFooter>footer</SiteFooter>
 }
 
-const FooterDiv = styled.div`
+const SiteFooter = styled.footer`
   background-color: #c50fdd;
 `

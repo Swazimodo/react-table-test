@@ -1,8 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
 
-import { willSucceed } from 'common/mockApiCalls'
+import { willSucceed, sortByText, sortByValue } from 'common';
 import { ResourceDetails } from 'resourceTable/tableRowState'
-import { sortByText, sortByValue } from 'common/sort';
 
 export type SortColumn = 'title' | 'id' | 'createdOn'
 export type SortDirection = 'asc' | 'desc'

@@ -1,10 +1,9 @@
 import { FC, useState } from 'react';
 import styled from 'styled-components'
 
-import { ConfirmationModal } from 'common/confirmation'
+import { ConfirmationModal, MediaSizes, getMaxWidthQuery, getMinWidthQuery } from 'common';
 import { useResourceTableRow, ResourceDetails } from 'resourceTable/tableRowState'
-import { MediaSizes, getMaxWidthQuery, getMinWidthQuery } from 'common/mediaQueries';
-import { TableCell } from './tableCell';
+import { TableCell } from 'resourceTable/tableCell';
 
 interface ResourceTableRowProps {
   details?: ResourceDetails

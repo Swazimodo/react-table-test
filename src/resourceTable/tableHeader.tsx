@@ -1,7 +1,7 @@
 import { FC, useCallback } from "react"
 import styled from 'styled-components'
 
-import { useMediaQuery, MediaSizes } from "common/mediaQueries"
+import { useMediaQuery, MediaSizes } from "common"
 import { RowDiv } from 'resourceTable/tableRow'
 import { TableCellDiv } from 'resourceTable/tableCell'
 import { SortColumn, SortDirection } from 'resourceTable/tableState'
