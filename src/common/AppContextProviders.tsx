@@ -1,5 +1,5 @@
 import { FC, useContext } from "react";
-import { ToastContextProvider, toastContext } from "./toast";
+import { ToastContextProvider, toastContext } from "common/toast";
 
 interface WithChildrenProps {
   children?: React.ReactNode

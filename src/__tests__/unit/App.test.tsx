@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 
 import { App } from 'App';
 
-test('verify layout components exist', () => {
+test('renderApp_shouldHaveLayoutElements', () => {
   const { container } = render(<App />);
 
   const headerElement = container.querySelector('header');
