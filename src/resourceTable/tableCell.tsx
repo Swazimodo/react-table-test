@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styled from 'styled-components'
 
-import { MediaSizes, getMaxWidthQuery } from 'common';
+import { MediaSizes, getMaxWidthQuery, getMinWidthQuery } from 'common';
 
 interface TableCellProps {
   columnHeaderName?: string
@@ -20,7 +20,7 @@ export const TableCellDiv = styled.div`
   border: 1px solid #494949;
   padding: 4px;
 
-  @media (min-width: ${MediaSizes.sm}px) {
+  @media ${getMinWidthQuery(MediaSizes.sm)} {
     display: table-cell;
   }
 

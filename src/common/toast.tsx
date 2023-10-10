@@ -59,7 +59,7 @@ const useToasts = () => {
 export const ToastMessageEmitter: FC = () => {
   const { messages } = useContext(toastContext)
   return <CenterPointDiv>
-    {messages.reverse().map((m, i) => <ToastDiv className={m.level} key={m.shown.getTime()}>
+    {messages.reverse().map((m, i) => <ToastDiv role="alert" className={m.level} key={m.shown.getTime()}>
       <div>{m.message}</div>
       {m.details && <div>{m.details}</div>}
     </ToastDiv>)}

@@ -55,7 +55,10 @@ export const ResourceTableRow: FC<ResourceTableRowProps> = (props) => {
       <TableCell columnHeaderName='Name'>{row?.nameField.value}</TableCell>
       <TableCell columnHeaderName='Created On'>{row.createdOn?.toDateString()}</TableCell>
       <TableCell>
-        {row.id && <button onClick={handleShowDeleteConfirmation}>Delete</button>}
+        {row.id && <button
+          aria-description={row?.nameField.value}
+          onClick={handleShowDeleteConfirmation}
+        >Delete</button>}
         {showDelConfirmation && <ConfirmationModal
           onCancel={handleCancelDeleteConfirmation}
           onConfirm={handleDelete}

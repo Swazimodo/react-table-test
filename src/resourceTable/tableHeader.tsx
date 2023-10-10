@@ -1,7 +1,7 @@
 import { FC, useCallback } from "react"
 import styled from 'styled-components'
 
-import { useMediaQuery, MediaSizes } from "common"
+import { useMediaQuery, MediaSizes, getMinWidthQuery } from "common"
 import { RowDiv } from 'resourceTable/tableRow'
 import { TableCellDiv } from 'resourceTable/tableCell'
 import { SortColumn, SortDirection } from 'resourceTable/tableState'
@@ -69,14 +69,19 @@ const TableHeaderCell: FC<TableHeaderCellProps> = (props) => {
     }
   }, [onHeaderCellClick, sortColumn, sortDirection, isSelectedSort])
 
-  return <TableHeaderCellDiv onClick={handleClick}>
-    {children}
-    {(isSelectedSort && sortDirection === 'asc') && " ^"}
-    {(isSelectedSort && sortDirection === 'desc') && " v"}
-  </TableHeaderCellDiv>
+  return <TableCellDiv>
+    <TableHeaderCellButton onClick={handleClick}>
+      {children}
+      {(isSelectedSort && sortDirection === 'asc') && " ^"}
+      {(isSelectedSort && sortDirection === 'desc') && " v"}
+    </TableHeaderCellButton>
+  </TableCellDiv>
 }
 
-const TableHeaderCellDiv = styled(TableCellDiv)`
-  cursor: pointer;
+const TableHeaderCellButton = styled.button`
   font-weight: bold;
+
+  border: none;
+  background: unset;
+  padding: 0;
 `
