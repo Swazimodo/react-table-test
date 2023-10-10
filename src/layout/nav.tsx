@@ -2,9 +2,9 @@ import { FC } from 'react';
 import styled from 'styled-components'
 
 export const Nav: FC = () => {
-  return <NavDiv>nav</NavDiv>
+  return <SiteNav>nav</SiteNav>
 }
 
-const NavDiv = styled.div`
+const SiteNav = styled.nav`
   background-color: #4f1492;
 `

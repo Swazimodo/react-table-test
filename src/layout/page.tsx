@@ -5,8 +5,7 @@ import { ErrorBoundary } from 'layout/errorBoundary'
 import { Header } from 'layout/header'
 import { Nav } from 'layout/nav'
 import { Footer } from 'layout/footer'
-import { MediaSizes, getMaxWidthQuery } from 'common/mediaQueries';
-import { ToastMessageEmitter } from 'common/toast';
+import { MediaSizes, getMaxWidthQuery, ToastMessageEmitter } from 'common';
 
 
 interface PageProps {

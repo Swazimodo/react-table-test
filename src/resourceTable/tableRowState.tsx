@@ -1,7 +1,5 @@
 import { useCallback, useContext, useMemo, useState } from 'react';
-import { useTextField } from 'common';
-import { randomSuccessOrFailure } from 'common/mockApiCalls';
-import { toastContext } from 'common/toast';
+import { randomSuccessOrFailure, toastContext, useTextField } from 'common';
 
 export interface ResourceDetails {
   name: string;

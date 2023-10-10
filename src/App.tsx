@@ -1,14 +1,14 @@
-import { ResourceTable } from 'resourceTable/table'
-import { Page } from 'layout/page'
-import 'App.css';
-import { AppContextProviders } from 'common/AppContextProviders';
+import { FC } from 'react';
 
-function App() {
+import 'App.css';
+import { AppContextProviders } from 'common';
+import { Page } from 'layout/page'
+import { ResourceTable } from 'resourceTable/table'
+
+export const App: FC = () => {
   return <AppContextProviders>
     <Page>
       <ResourceTable />
     </Page>
   </AppContextProviders>;
 }
-
-export default App;

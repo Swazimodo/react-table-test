@@ -1,10 +1,9 @@
 import { FC, useState } from 'react';
 import styled from 'styled-components'
 
-import { ConfirmationModal } from 'common/confirmation'
+import { ConfirmationModal, MediaSizes, getMaxWidthQuery, getMinWidthQuery } from 'common';
 import { useResourceTableRow, ResourceDetails } from 'resourceTable/tableRowState'
-import { MediaSizes, getMaxWidthQuery, getMinWidthQuery } from 'common/mediaQueries';
-import { TableCell } from './tableCell';
+import { TableCell } from 'resourceTable/tableCell';
 
 interface ResourceTableRowProps {
   details?: ResourceDetails
@@ -38,24 +37,24 @@ export const ResourceTableRow: FC<ResourceTableRowProps> = (props) => {
   }
 
   const editRowView = () => {
-    return [
-      <TableCell key={1} columnHeaderName='Id'>{row?.id}</TableCell>,
-      <TableCell key={2} columnHeaderName='Name'>
+    return <>
+      <TableCell columnHeaderName='Id'>{row?.id}</TableCell>
+      <TableCell columnHeaderName='Name'>
         <input autoFocus value={row?.nameField.value ?? ''} onChange={row?.nameField.handleChange} />
-      </TableCell>,
-      <TableCell key={3} columnHeaderName='Created On'>{row.createdOn?.toDateString()}</TableCell>,
-      <TableCell key={4}>
+      </TableCell>
+      <TableCell columnHeaderName='Created On'>{row.createdOn?.toDateString()}</TableCell>
+      <TableCell>
         <button onClick={handleSave}>Save</button>
       </TableCell>
-    ]
+    </>
   }
 
   const viewRow = () => {
-    return [
-      <TableCell key={1} columnHeaderName='Id'>{row?.id}</TableCell>,
-      <TableCell key={2} columnHeaderName='Name'>{row?.nameField.value}</TableCell>,
-      <TableCell key={3} columnHeaderName='Created On'>{row.createdOn?.toDateString()}</TableCell>,
-      <TableCell key={4}>
+    return <>
+      <TableCell columnHeaderName='Id'>{row?.id}</TableCell>
+      <TableCell columnHeaderName='Name'>{row?.nameField.value}</TableCell>
+      <TableCell columnHeaderName='Created On'>{row.createdOn?.toDateString()}</TableCell>
+      <TableCell>
         {row.id && <button onClick={handleShowDeleteConfirmation}>Delete</button>}
         {showDelConfirmation && <ConfirmationModal
           onCancel={handleCancelDeleteConfirmation}
@@ -63,7 +62,7 @@ export const ResourceTableRow: FC<ResourceTableRowProps> = (props) => {
           message='Do you want to delete?'
         />}
       </TableCell>
-    ]
+    </>
   }
 
   return <RowWrapper

@@ -5,7 +5,7 @@ import { ResourceTableRow } from 'resourceTable/tableRow'
 import { ResourceDetails } from 'resourceTable/tableRowState'
 import { useResourceTableData } from 'resourceTable/tableState';
 import { TableHeaderRow } from 'resourceTable/tableHeader';
-import { MediaSizes, getMinWidthQuery } from 'common/mediaQueries';
+import { MediaSizes, getMinWidthQuery } from 'common';
 
 export const ResourceTable: FC = () => {
   const { resources, sortColumn, sortDirection, isLoading, handleAddRow, handleDeleteRow, handleSortChange } = useResourceTableData()
