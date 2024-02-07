@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import styled from 'styled-components'
 
-import { ErrorBoundary } from 'layout/errorBoundary'
 import { Header } from 'layout/header'
 import { Nav } from 'layout/nav'
 import { Footer } from 'layout/footer'
@@ -13,7 +12,7 @@ interface PageProps {
 }
 
 export const Page: FC<PageProps> = (props) => {
-  return <ErrorBoundary>
+  return <>
     <ToastMessageEmitter />
     <PageDiv className='App'>
       <Header />
@@ -23,7 +22,7 @@ export const Page: FC<PageProps> = (props) => {
       </ContentMain>
       <Footer />
     </PageDiv>
-  </ErrorBoundary>
+  </>
 }
 
 const PageDiv = styled.div`
