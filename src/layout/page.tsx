@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Outlet } from 'react-router-dom';
 import styled from 'styled-components'
 
 import { Header } from 'layout/header'
@@ -18,7 +19,7 @@ export const Page: FC<PageProps> = (props) => {
       <Header />
       <Nav />
       <ContentMain>
-        {props.children}
+        <Outlet />
       </ContentMain>
       <Footer />
     </PageDiv>
