@@ -2,13 +2,13 @@ import { FC } from 'react';
 
 import 'App.css';
 import { AppContextProviders } from 'common';
-import { Page } from 'layout/page'
-import { ResourceTable } from 'resourceTable/table'
+import { PageRouter } from 'layout/PageRouter'
+import { ErrorBoundary } from 'layout/errorBoundary'
 
 export const App: FC = () => {
-  return <AppContextProviders>
-    <Page>
-      <ResourceTable />
-    </Page>
-  </AppContextProviders>;
+  return <ErrorBoundary>
+    <AppContextProviders>
+      <PageRouter />
+    </AppContextProviders>
+  </ErrorBoundary>;
 }
