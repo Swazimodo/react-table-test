@@ -1,10 +1,10 @@
 import { FC, useCallback, useState } from 'react';
 import styled from 'styled-components'
 
-import { ResourceTableRow } from 'resourceTable/tableRow'
-import { ResourceDetails } from 'resourceTable/tableRowState'
-import { useResourceTableData } from 'resourceTable/tableState';
-import { TableHeaderRow } from 'resourceTable/tableHeader';
+import { ResourceTableRow } from 'pages/resourceTable/tableRow'
+import { ResourceDetails } from 'pages/resourceTable/tableRowState'
+import { useResourceTableData } from 'pages/resourceTable/tableState';
+import { TableHeaderRow } from 'pages/resourceTable/tableHeader';
 import { MediaSizes, getMinWidthQuery } from 'common';
 
 export const ResourceTable: FC = () => {

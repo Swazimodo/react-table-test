@@ -2,9 +2,9 @@ import { FC, useCallback } from "react"
 import styled from 'styled-components'
 
 import { useMediaQuery, MediaSizes, getMinWidthQuery } from "common"
-import { RowDiv } from 'resourceTable/tableRow'
-import { TableCellDiv } from 'resourceTable/tableCell'
-import { SortColumn, SortDirection } from 'resourceTable/tableState'
+import { RowDiv } from 'pages/resourceTable/tableRow'
+import { TableCellDiv } from 'pages/resourceTable/tableCell'
+import { SortColumn, SortDirection } from 'pages/resourceTable/tableState'
 
 interface TableHeaderProps {
   sortColumn: SortColumn

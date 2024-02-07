@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
 
 import { willSucceed, sortByText, sortByValue } from 'common';
-import { ResourceDetails } from 'resourceTable/tableRowState'
+import { ResourceDetails } from 'pages/resourceTable/tableRowState'
 
 export type SortColumn = 'title' | 'id' | 'createdOn'
 export type SortDirection = 'asc' | 'desc'
